@@ -1,6 +1,7 @@
 package com.next.payroll_system.service.impl;
 
 import com.next.payroll_system.entity.Employee;
+import com.next.payroll_system.exception.ResourceNotFoundExecption;
 import com.next.payroll_system.repository.EmployeeRepository;
 import com.next.payroll_system.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +24,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee updateEmployee(int id, Employee newData) {
 
         Employee existing = repo.findById(id)
-                .orElse(null);
-
-        if(existing == null) {
-            return null;   // Later: throw exception
-        }
-
+                .orElseThrow(() -> new ResourceNotFoundExecption("Employee not found with id: " + id));
         existing.setName(newData.getName());
         existing.setEmail(newData.getEmail());
         existing.setSalary(newData.getSalary());
         existing.setDepartment(newData.getDepartment());
 
+        // 3️⃣ Save updated employee
         return repo.save(existing);
     }
 
