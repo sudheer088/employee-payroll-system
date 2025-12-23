@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    // ------------------- CUSTOM NOT FOUND -------------------
     @ExceptionHandler(ResourceNotFoundExecption.class)
     public ResponseEntity<?> handleResourceNotFound(ResourceNotFoundExecption ex){
       Map<String ,Object> response = new HashMap<>();
@@ -20,7 +19,6 @@ public class GlobalExceptionHandler {
       response.put("timestamp", LocalDateTime.now());
       return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
-    // ------------------- VALIDATION ERRORS -------------------
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationErrors(MethodArgumentNotValidException ex){
         Map<String, Object> errors= new HashMap<>();

@@ -4,7 +4,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
-import jakarta.validation.constraints.*;
 
 public class EmployeeDTO {
 
@@ -21,8 +20,6 @@ public class EmployeeDTO {
 
     @Positive(message = "Department ID must be positive")
     private int departmentId;
-
-    // -------- GETTERS & SETTERS ----------
 
     public int getId() {
         return id;

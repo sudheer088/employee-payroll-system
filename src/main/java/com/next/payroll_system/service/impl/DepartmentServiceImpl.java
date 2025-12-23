@@ -1,6 +1,7 @@
 package com.next.payroll_system.service.impl;
 
 import com.next.payroll_system.entity.Department;
+import com.next.payroll_system.exception.ResourceNotFoundExecption;
 import com.next.payroll_system.repository.DepartmentRepository;
 import com.next.payroll_system.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Department getDepartment(int id) {
         return repo.findById(id)
-                .orElse(null);   // returns null if not found (later we add exceptions)
+                .orElseThrow(()-> new ResourceNotFoundExecption("there is no such department"));
     }
 
     @Override

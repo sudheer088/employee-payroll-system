@@ -17,6 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee addEmployee(Employee e) {
+
         return repo.save(e);
     }
 
@@ -29,8 +30,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         existing.setEmail(newData.getEmail());
         existing.setSalary(newData.getSalary());
         existing.setDepartment(newData.getDepartment());
-
-        // 3️⃣ Save updated employee
         return repo.save(existing);
     }
 
@@ -42,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getEmployee(int id) {
         return repo.findById(id)
-                .orElse(null);
+                .orElseThrow(()->new ResourceNotFoundExecption("employee not found") );
     }
 
     @Override

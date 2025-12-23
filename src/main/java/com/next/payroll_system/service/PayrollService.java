@@ -11,4 +11,6 @@ public interface PayrollService {
     Payroll getPayroll(int id);
 
     List<Payroll> getPayrollByEmployee(int employeeId);
+
+    Payroll generateOrGetPayroll(int employeeId, String month);
 }
